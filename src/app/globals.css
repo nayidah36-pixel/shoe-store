@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f8f9fa;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Custom brand variables (optional, usable via var(--color-brand)) */
+:root {
+  --color-brand: #f5a623;
+  --color-brand-dark: #e09612;
+  --color-brand-light: #fff8ec;
+}
