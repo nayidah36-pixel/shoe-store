@@ -7,11 +7,14 @@ export interface Shoe {
   image: string;
   description: string;
   sizes: number[];
-  gender: 'Men' | 'Women' | 'Boys' | 'Girls' | 'Unisex';
-  shoeType: 'Athletic Shoe' | 'Casual' | 'Boots' | 'Loafer' | 'Sandals';
-  features: string[]; // e.g., ["Lightweight", "Breathable", "Water Resistant"]
-  closureType: 'Lace-Up' | 'Slip-On' | 'Hook & Loop' | 'Zipper';
-  material: string;
+  gender: 'Men' | 'Women' | 'Boys' | 'Girls' | 'Unisex' | string;
+  shoeType?: string;
+  features?: string[];
+  closureType?: string;
+  material?: string;
+  images?: string[];
+  rating?: number;
+  reviews?: number;
 }
 
 export interface CartItem {
