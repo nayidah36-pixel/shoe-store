@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { formatPrice } from '@/lib/whatsapp';
 
 export default function ProductPage() {
   const [size, setSize] = useState(8);
@@ -17,6 +18,13 @@ export default function ProductPage() {
     'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600&h=600&fit=crop',
   ];
   const colors = ['#ffffff', '#1a1a1a', '#f5b7c4'];
+
+  const related = [
+    { n: 'Adidas Ultraboost 22', p: 160, r: 4.7, img: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&h=400&fit=crop' },
+    { n: 'Nike Dunk Low', p: 120, r: 4.6, img: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&h=400&fit=crop' },
+    { n: 'Converse Chuck Taylor', p: 70, r: 4.5, img: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop' },
+    { n: 'New Balance 550', p: 110, r: 4.5, img: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400&h=400&fit=crop' },
+  ];
 
   return (
     <div className="max-w-[1400px] mx-auto px-4 py-6">
@@ -59,8 +67,8 @@ export default function ProductPage() {
           </div>
 
           <div className="flex items-baseline gap-3 mb-6">
-            <span className="text-3xl font-bold">$110.00</span>
-            <span className="text-gray-400 line-through">$130.00</span>
+            <span className="text-3xl font-bold">{formatPrice(110)}</span>
+            <span className="text-gray-400 line-through">{formatPrice(130)}</span>
             <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">15% OFF</span>
           </div>
 
@@ -85,7 +93,9 @@ export default function ProductPage() {
 
           {/* Size */}
           <div className="mb-5">
-            <p className="text-sm font-semibold mb-2">Size: <span className="text-gray-600 font-normal">{size}</span></p>
+            <p className="text-sm font-semibold mb-2">
+              Size: <span className="text-gray-600 font-normal">{size}</span>
+            </p>
             <div className="flex flex-wrap gap-2">
               {[6, 7, 8, 9, 10, 11, 12].map((s) => (
                 <button
@@ -113,12 +123,16 @@ export default function ProductPage() {
               <button
                 onClick={() => setQty(Math.max(1, qty - 1))}
                 className="w-10 h-11 text-lg hover:bg-gray-50 rounded-l-full"
-              >−</button>
+              >
+                −
+              </button>
               <span className="w-8 text-center font-semibold">{qty}</span>
               <button
                 onClick={() => setQty(qty + 1)}
                 className="w-10 h-11 text-lg hover:bg-gray-50 rounded-r-full"
-              >+</button>
+              >
+                +
+              </button>
             </div>
             <button className="flex-1 bg-brand hover:bg-brand-dark text-white font-bold py-3 rounded-full transition shadow-sm">
               Add to Cart
@@ -140,7 +154,9 @@ export default function ProductPage() {
                 key={t.k}
                 onClick={() => setTab(t.k as any)}
                 className={`pb-3 text-sm font-semibold border-b-2 transition ${
-                  tab === t.k ? 'border-brand text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-900'
+                  tab === t.k
+                    ? 'border-brand text-gray-900'
+                    : 'border-transparent text-gray-500 hover:text-gray-900'
                 }`}
               >
                 {t.l}
@@ -170,18 +186,16 @@ export default function ProductPage() {
       <section className="mt-14">
         <h2 className="text-xl font-bold mb-4">You may also like</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {[
-            { n: 'Adidas Ultraboost 22', p: 160, r: 4.7, img: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&h=400&fit=crop' },
-            { n: 'Nike Dunk Low', p: 120, r: 4.6, img: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&h=400&fit=crop' },
-            { n: 'Converse Chuck Taylor', p: 70, r: 4.5, img: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop' },
-            { n: 'New Balance 550', p: 110, r: 4.5, img: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400&h=400&fit=crop' },
-          ].map((p) => (
-            <div key={p.n} className="bg-white rounded-xl border border-gray-100 p-3 hover:shadow-lg transition cursor-pointer">
+          {related.map((p) => (
+            <div
+              key={p.n}
+              className="bg-white rounded-xl border border-gray-100 p-3 hover:shadow-lg transition cursor-pointer"
+            >
               <div className="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-2">
                 <img src={p.img} alt={p.n} className="w-full h-full object-cover" />
               </div>
               <h3 className="text-sm font-bold line-clamp-1">{p.n}</h3>
-              <p className="text-base font-bold mt-1">{formatPrice(shoe.price)}</p>
+              <p className="text-base font-bold mt-1">{formatPrice(p.p)}</p>
               <div className="flex items-center gap-1">
                 <span className="text-brand text-xs">{'★'.repeat(Math.round(p.r))}</span>
                 <span className="text-[11px] text-gray-500">({p.r})</span>
