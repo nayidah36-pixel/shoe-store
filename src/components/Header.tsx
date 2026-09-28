@@ -24,7 +24,6 @@ export default function Header({
     { label: 'Kids', value: 'Kids' },
     { label: 'Brands', value: '__brands__' },
     { label: 'New Arrivals', value: '__new__' },
-    { label: 'Sale', value: '__sale__' },
   ];
 
   return (
