@@ -181,7 +181,7 @@ export default function ProductPage() {
                 <img src={p.img} alt={p.n} className="w-full h-full object-cover" />
               </div>
               <h3 className="text-sm font-bold line-clamp-1">{p.n}</h3>
-              <p className="text-base font-bold mt-1">${p.p.toFixed(2)}</p>
+              <p className="text-base font-bold mt-1">{formatPrice(shoe.price)}</p>
               <div className="flex items-center gap-1">
                 <span className="text-brand text-xs">{'★'.repeat(Math.round(p.r))}</span>
                 <span className="text-[11px] text-gray-500">({p.r})</span>

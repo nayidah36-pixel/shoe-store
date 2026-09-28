@@ -1,10 +1,9 @@
 import { CartItem } from '@/types/shoe';
 
-const WHATSAPP_NUMBER = '254748716418'; 
-const KES_RATE = 130;
+const WHATSAPP_NUMBER = '254748716418';
 
-export function formatPrice(usd: number): string {
-  return `KES ${(usd * KES_RATE).toLocaleString()}`;
+export function formatPrice(kes: number): string {
+  return `KES ${kes.toLocaleString('en-KE')}`;
 }
 
 export function buildWhatsAppMessage(
@@ -25,17 +24,17 @@ export function buildWhatsAppMessage(
 
   let subtotal = 0;
   cart.forEach((item, i) => {
-    const total = item.shoe.price * KES_RATE * item.quantity;
+    const total = item.shoe.price * item.quantity;
     subtotal += total;
     lines.push(
       `${i + 1}. ${item.shoe.brand} ${item.shoe.name}`,
       `    Size EU ${item.selectedSize}  ×${item.quantity}`,
-      `    ${formatPrice(item.shoe.price * item.quantity)}`
+      `    ${formatPrice(total)}`
     );
   });
 
   lines.push('──────────────────');
-  lines.push(`*TOTAL: ${formatPrice(subtotal / KES_RATE)}*`);
+  lines.push(`*TOTAL: ${formatPrice(subtotal)}*`);
 
   if (customer?.notes) {
     lines.push('');

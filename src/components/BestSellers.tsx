@@ -2,6 +2,7 @@
 
 import shoeData from '@/data/shoes.json';
 import { Shoe } from '@/types/shoe';
+import { formatPrice } from '@/lib/whatsapp';
 
 export default function BestSellers({ onSelect }: { onSelect: (shoe: Shoe) => void }) {
   const bestSellers = (shoeData as Shoe[]).slice(0, 4);
@@ -34,7 +35,7 @@ export default function BestSellers({ onSelect }: { onSelect: (shoe: Shoe) => vo
             <p className="text-[11px] text-gray-500 mb-1">
               {p.gender} · {p.category}
             </p>
-            <p className="text-base font-bold text-gray-900">${p.price.toFixed(2)}</p>
+            <p className="text-base font-bold text-gray-900">{formatPrice(p.price)}</p>
             <div className="flex items-center gap-1 mt-1">
               <span className="text-brand text-xs">{'★'.repeat(Math.round(p.rating || 4))}</span>
               <span className="text-[11px] text-gray-500">({p.rating})</span>

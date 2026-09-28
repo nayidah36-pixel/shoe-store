@@ -11,6 +11,7 @@ import PromoBanners from '@/components/PromoBanners';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
 import { CartItem, Shoe } from '@/types/shoe';
+import { formatPrice } from '@/lib/whatsapp';
 
 export default function Home() {
   const shoes = shoeData as Shoe[];
@@ -211,7 +212,7 @@ export default function Home() {
                   </span>
                 </div>
                 <p className="text-base font-bold text-gray-900">
-                  ${shoe.price.toFixed(2)}
+                  {formatPrice(shoe.price)}
                 </p>
               </div>
             ))}
@@ -229,7 +230,7 @@ export default function Home() {
               {selectedShoe.brand} {selectedShoe.name}
             </h3>
             <p className="text-xs text-gray-500 mb-4">
-              ${selectedShoe.price.toFixed(2)}
+              {formatPrice(selectedShoe.price)}
             </p>
             <p className="text-xs font-bold mb-2">Select Size (EU):</p>
             <div className="flex flex-wrap gap-2 mb-5">

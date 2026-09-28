@@ -49,9 +49,9 @@ export default function CartDrawer({
   if (!isOpen) return null;
 
   const subtotal = cartItems.reduce(
-    (s, i) => s + i.shoe.price * 130 * i.quantity,
-    0
-  );
+  (s, i) => s + i.shoe.price * i.quantity,
+  0
+);
   const itemCount = cartItems.reduce((s, i) => s + i.quantity, 0);
 
   return (
